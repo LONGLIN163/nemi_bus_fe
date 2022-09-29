@@ -33,9 +33,8 @@ export const VehicleContextProvider = ({children}) => {
                 `http://localhost:8080/api/nemi_v1/bus`
             );
             console.log(data);
-            setInitVehicles(data,()=>{
-                console.log(getVehicleTypes())
-            });
+            setInitVehicles(data);
+            console.log(getVehicleTypes());
         }
         fetchData();
     },[])
