@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom'
 import React from 'react';
-import {VehicleContextProvider} from '../../VehicleContextProvider';
+import {VehicleContextProvider} from '../../../store/VehicleContextProvider';
 import Adapter from 'enzyme-adapter-react-16';
 import { configure, mount } from 'enzyme';
 

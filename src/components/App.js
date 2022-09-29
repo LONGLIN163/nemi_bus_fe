@@ -1,7 +1,7 @@
 
 import React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import {VehicleContextProvider} from './VehicleContextProvider'
+import {VehicleContextProvider} from '../store/VehicleContextProvider'
 import {Header,Footer} from './Layouts';
 import {ContentView} from './Programmes'
 

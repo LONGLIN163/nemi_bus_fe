@@ -1,6 +1,6 @@
 import React from 'react';
 import {withWidth, AppBar,Tabs,Tab} from '@material-ui/core';
-import { useVehicleContext } from '../../VehicleContextProvider';
+import { useVehicleContext } from '../../../store/VehicleContextProvider';
 import { withStyles } from '@material-ui/core/styles';
 
 

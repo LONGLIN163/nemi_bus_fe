@@ -1,7 +1,7 @@
 
-import React, { useEffect,useState,createContext,useContext} from 'react';
-import {actives,buses } from '../store';
-
+import React, { useEffect,useState ,createContext,useContext} from 'react';
+import {actives,buses } from './store';
+import axios from "axios";
 export const VehicleContext = createContext({})
 export const useVehicleContext = () => useContext(VehicleContext);
 
@@ -15,26 +15,48 @@ export const VehicleContextProvider = ({children}) => {
     const [vehicleStatus,setVehicleStatus]=useState(actives);
     const [vehiclesByStatus,setVehiclesByStatus]=useState([]);
 
+    const getVehicles = () => {
+        axios({
+            method:"get",
+            url:"http://localhost:8080/api/nemi_v1/bus"
+        })
+        .then(
+            (res) => {
+                console.log(res.data)
+                setInitVehicles(res.data);
+            }
+        )
+    }
+    useEffect( () => {
+        async function fetchData() {
+            const { data } = await axios.get(
+                `http://localhost:8080/api/nemi_v1/bus`
+            );
+            console.log(data);
+            setInitVehicles(data,()=>{
+                console.log(getVehicleTypes())
+            });
+        }
+        fetchData();
+    },[])
 
     const getVehicleTypes=()=>{
         const initData=vehicleStatus.reduce((initVehicles, category) => ({
           ...initVehicles,
           [category]:[]
         }),{})
-        return Object.entries( 
+        return Object.entries(
           initVehicles.reduce((initVehicles, vehicle) => {
             const {active}=vehicle
             initVehicles[active] = [...initVehicles[active],vehicle]
             return initVehicles;
           },initData)
         )
-      }
-    useEffect(() => {
-        setVehiclesByStatus(getVehicleTypes())
-      },[initVehicles])
+     }
+
     const onCatSelect=(category)=>{
           setCategory(category)
-      }
+    }
     const onItemSelect=(id)=>{
          setVehicle(initVehicles.find(item => item.id===id))
          setEditMode(false)

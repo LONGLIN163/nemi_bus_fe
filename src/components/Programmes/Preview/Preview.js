@@ -6,7 +6,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 
 import {Form} from '..';
-import { useVehicleContext } from '../../VehicleContextProvider';
+import { useVehicleContext } from '../../../store/VehicleContextProvider';
 
 const Preview = () => {
     const {
